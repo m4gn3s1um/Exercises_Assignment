@@ -42,6 +42,7 @@ public class StringExercisesTests
     public void TestRemoveWhitespaces()
     {
         Assert.AreEqual("helloworld", exercise.RemoveWhitespaces("hello world"));
+        Assert.AreEqual("helloCsharp", exercise.RemoveWhitespaces("hello C sharp"));
     }
     
     [Test]

@@ -61,8 +61,15 @@ public class String_Exercises
     // Example Output: "helloworld"
     public string RemoveWhitespaces(string input)
     {
-        // TODO: Implement this method
-        return "";
+        foreach (var ch in input)
+        {
+            if (ch == ' ')
+            {
+                var index = input.IndexOf(ch);
+                input = input.Remove(index,1);
+            }
+        }
+        return input;
     }
 
     // Description: Write a method that finds the first non-repeated
