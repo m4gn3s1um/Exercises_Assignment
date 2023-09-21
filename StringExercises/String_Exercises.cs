@@ -8,8 +8,7 @@ public class String_Exercises
     // Example Output: "olleh"
     public string ReverseString(string input)
     {
-        // TODO: Implement this method
-        return "";
+        return string.Concat(input.Reverse());
     }
     
     // Description: Write a method that checks if a string
@@ -18,7 +17,11 @@ public class String_Exercises
     // Example Output: true
     public bool IsPalindrome(string input)
     {
-        // TODO: Implement this method
+        var reversed = ReverseString(input);
+        if (input.Equals(reversed))
+        {
+            return true;
+        }
         return false;
     }
     
@@ -28,8 +31,7 @@ public class String_Exercises
     // Example Output: "HELLO"
     public string ConvertToUpper(string input)
     {
-        // TODO: Implement this method
-        return "";
+        return input.ToUpper();
     }
 
     // Description: Write a method that counts the number
@@ -38,8 +40,19 @@ public class String_Exercises
     // Example Output: 2
     public int CountVowels(string input)
     {
-        // TODO: Implement this method
-        return 0;
+        int count = 0;
+        var vowels = new char[]{'a', 'e', 'y', 'u', 'i', 'o', 'æ', 'å', 'ø'};
+        foreach (var ch in input)
+        {
+            foreach (var vo in vowels)
+            {
+                if (ch == vo)
+                {
+                    count++;
+                }
+            }
+        }
+        return count;
     }
     
     // Description: Write a method that removes all

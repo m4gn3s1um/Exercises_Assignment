@@ -35,6 +35,7 @@ public class StringExercisesTests
     public void TestCountVowels()
     {
         Assert.AreEqual(2, exercise.CountVowels("hello"));
+        Assert.AreEqual(16, exercise.CountVowels("Supercalifragilisticexpialidocious"));
     }
 
     [Test]
