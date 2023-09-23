@@ -1,4 +1,6 @@
-﻿namespace StringExercises;
+﻿using NUnit.Framework;
+
+namespace StringExercises;
 
 public class String_Exercises
 {
@@ -78,8 +80,33 @@ public class String_Exercises
     // Example Output: "w"
     public char FirstNonRepeatedCharacter(string input)
     {
-        // TODO: Implement this method
-        return '\0';
+        char[] charArray = input.ToCharArray();
+        char output = '\0';
+        
+        IDictionary<char, int> repeatedChar = new Dictionary<char, int>();
+        ICollection<int> icoll = repeatedChar.Values;
+        
+        foreach (var c in charArray)
+        {
+            if (repeatedChar.ContainsKey(c))
+            {
+                repeatedChar[c] = repeatedChar[c] + 1;
+            }
+            else
+            {
+                repeatedChar.Add(c, 0);
+            }
+        }
+
+        foreach (var charKey in repeatedChar)
+        {
+            if (charKey.Value == 0)
+            {
+                output = charKey.Key;
+                break;
+            }
+        }
+        return output;
     }
     
     // Description: Write a method that checks if two strings are anagrams.
@@ -87,6 +114,32 @@ public class String_Exercises
     // Example Output: true
     public bool AreAnagrams(string str1, string str2)
     {
+        char[] charArray1 = str1.ToCharArray();
+        char[] charArray2 = str2.ToCharArray();
+
+        List<char> l1 = charArray1.ToList();
+        List<char> l2 = charArray2.ToList();
+
+        l1.Sort();
+        l2.Sort();
+        
+        int x = 0;
+        
+        if (str1.Length == str2.Length)
+        {
+            for (int i = 0; i < l1.Count; i++)
+            {
+                if (l1[i].Equals(l2[i]))
+                {
+                    Console.WriteLine(l1[i]);
+                    x++;
+                }
+                if (x == l1.Count)
+                {
+                    return true;
+                }
+            }
+        }
         // TODO: Implement this method
         return false;
     }
@@ -96,8 +149,8 @@ public class String_Exercises
     // Example Output: "Mr%20John%20Smith"
     public string ReplaceSpaces(string input)
     {
-        // TODO: Implement this method
-        return "";
+        string output = String.Format(Uri.EscapeDataString(input));
+        return output;
     }
     
     // Description: Write a method that counts the occurrences of a specific character in a string.
@@ -105,8 +158,16 @@ public class String_Exercises
     // Example Output: 2
     public int CountCharacterOccurrences(string input, char character)
     {
-        // TODO: Implement this method
-        return 0;
+        int count = 0;
+
+        for (int i = 0; i < input.Length; i++)
+        {
+            if (input[i].Equals(character))
+            {
+                count++;
+            }
+        }
+        return count;
     }
     
     // Description: Write a method that shortens a string by replacing sequences of the same character with that character followed by the count.
@@ -114,10 +175,26 @@ public class String_Exercises
     // Example Output: "a3b2c1"
     public string ShortenStringWithCounts(string input)
     {
-        // TODO: Implement this method
-        return "";
+        char[] charArray = input.ToCharArray();
+        IDictionary<char, int> charCount = new Dictionary<char, int>();
+        string output = null;
+        
+        foreach (var c in charArray)
+        {
+            if (charCount.ContainsKey(c))
+            {
+                charCount[c] = charCount[c] + 1;
+            }
+            else
+            {
+                charCount.Add(c, 0);
+            }
+        }
+
+        foreach (var charKey in charCount)
+        {
+            output = output + charKey.Key + (charKey.Value+1);
+        }
+        return output;
     }
-
-
-
 }
